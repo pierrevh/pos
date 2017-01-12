@@ -1,8 +1,11 @@
 package org.pvhees.pos;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.pvhees.pos.EnglishLanguageConsoleDisplay;
+import org.pvhees.pos.TextUtilities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -30,7 +33,7 @@ public class DisplayMessagesToConsoleTest {
 
         new EnglishLanguageConsoleDisplay().displayProductNotFoundMessage("987");
 
-        assertEquals(Arrays.asList("Product not found for 987"), TextUtilities.lines(canvas.toString("UTF-8")));
+        Assert.assertEquals(Arrays.asList("Product not found for 987"), TextUtilities.lines(canvas.toString("UTF-8")));
     }
 
     @Test

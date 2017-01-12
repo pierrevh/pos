@@ -1,6 +1,8 @@
 package org.pvhees.pos;
 
 import org.junit.Test;
+import org.pvhees.pos.Catalog;
+import org.pvhees.pos.Price;
 
 import static org.junit.Assert.assertEquals;
 

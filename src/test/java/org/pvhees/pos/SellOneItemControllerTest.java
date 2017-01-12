@@ -3,6 +3,10 @@ package org.pvhees.pos;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.pvhees.pos.Catalog;
+import org.pvhees.pos.Display;
+import org.pvhees.pos.Price;
+import org.pvhees.pos.SaleController;
 
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;

@@ -1,10 +1,14 @@
 package org.pvhees.pos;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.pvhees.pos.EnglishLanguageConsoleDisplay;
+import org.pvhees.pos.Price;
+import org.pvhees.pos.TextUtilities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -56,7 +60,7 @@ public class DisplayPricesToConsoleTest {
 
         new EnglishLanguageConsoleDisplay().displayPrice(Price.cents(priceInCents));
 
-        assertEquals(Arrays.asList(expectedFormattedPrice), TextUtilities.lines(canvas.toString("UTF-8")));
+        Assert.assertEquals(Arrays.asList(expectedFormattedPrice), TextUtilities.lines(canvas.toString("UTF-8")));
     }
 
 }
