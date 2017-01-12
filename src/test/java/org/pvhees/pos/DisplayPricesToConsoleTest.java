@@ -1,9 +1,13 @@
 package org.pvhees.pos;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -11,6 +15,18 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class DisplayPricesToConsoleTest {
+    private PrintStream productionsSystemOut;
+
+    @Before
+    public void setUp() throws Exception {
+        productionsSystemOut = System.out;
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        System.setOut(productionsSystemOut);
+    }
+
     private final int priceInCents;
     private final String expectedFormattedPrice;
 
@@ -35,10 +51,12 @@ public class DisplayPricesToConsoleTest {
 
     @Test
     public void test() throws Exception {
-        assertEquals(expectedFormattedPrice, format(Price.cents(priceInCents)));
+        ByteArrayOutputStream canvas = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(canvas));
+
+        new ConsoleDisplay().displayPrice(Price.cents(priceInCents));
+
+        assertEquals(Arrays.asList(expectedFormattedPrice), TextUtilities.lines(canvas.toString("UTF-8")));
     }
 
-    private static String format(Price price) {
-        return String.format("$%,.2f", price.dollarValue());
-    }
 }

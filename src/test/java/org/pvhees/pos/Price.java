@@ -13,7 +13,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return "a Price";
+        return String.format("a Price of %d cents", centsValue);
     }
 
     public double dollarValue() {
