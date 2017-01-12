@@ -1,16 +1,32 @@
 package org.pvhees.pos;
 
-public class ConsoleDisplay {
+public class ConsoleDisplay implements Display {
+
+    public static final String PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for %s";
+    public static final String SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = "Scanning error: empty barcode";
+    public static final String PRICE_IN_DOLLARS_MESSAGE_FORMAT = "$%,.2f";
+
+    private void render(String text) {
+        System.out.println(text);
+    }
+
+    private String mergeTemplate(String messageTemplate, Object... placeholderValues) {
+        return String.format(messageTemplate, placeholderValues);
+    }
+
+    private void displayMessage(String messageTemplate, Object... placeholderValues) {
+        render(mergeTemplate(messageTemplate, placeholderValues));
+    }
 
     public void displayProductNotFoundMessage(String barcodeNotFound) {
-        System.out.println(String.format("Product not found for %s", barcodeNotFound));
+        displayMessage(PRODUCT_NOT_FOUND_MESSAGE_FORMAT, barcodeNotFound);
     }
 
     public void displayEmptyBarcodeMessage() {
-        System.out.println(String.format("Scanning error: empty barcode"));
+        displayMessage(SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT);
     }
 
     public void displayPrice(Price price) {
-        System.out.println(String.format("$%,.2f", price.dollarValue()));
+        displayMessage(PRICE_IN_DOLLARS_MESSAGE_FORMAT, price.dollarValue());
     }
 }
