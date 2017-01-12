@@ -2,10 +2,6 @@ package org.pvhees.pos;
 
 public class ConsoleDisplay {
 
-    public static String formatPrice(Price price) {
-        return String.format("$%,.2f", price.dollarValue());
-    }
-
     public void displayProductNotFoundMessage(String barcodeNotFound) {
         System.out.println(String.format("Product not found for %s", barcodeNotFound));
     }
@@ -15,6 +11,6 @@ public class ConsoleDisplay {
     }
 
     public void displayPrice(Price price) {
-        System.out.println(formatPrice(price));
+        System.out.println(String.format("$%,.2f", price.dollarValue()));
     }
 }
