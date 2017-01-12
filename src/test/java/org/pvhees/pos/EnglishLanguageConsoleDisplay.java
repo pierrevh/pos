@@ -1,6 +1,6 @@
 package org.pvhees.pos;
 
-public class ConsoleDisplay implements Display {
+public class EnglishLanguageConsoleDisplay implements Display {
 
     public static final String PRODUCT_NOT_FOUND_MESSAGE_FORMAT = "Product not found for %s";
     public static final String SCANNING_ERROR_EMPTY_BARCODE_MESSAGE_FORMAT = "Scanning error: empty barcode";
