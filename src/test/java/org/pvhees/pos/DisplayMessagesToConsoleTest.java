@@ -48,10 +48,11 @@ public class DisplayMessagesToConsoleTest {
         ByteArrayOutputStream canvas = new ByteArrayOutputStream();
         System.setOut(new PrintStream(canvas));
 
-        new EnglishLanguageConsoleDisplay().displayProductNotFoundMessage("987123");
-        new EnglishLanguageConsoleDisplay().displayEmptyBarcodeMessage();
-        new EnglishLanguageConsoleDisplay().displayProductNotFoundMessage("1234");
-        new EnglishLanguageConsoleDisplay().displayEmptyBarcodeMessage();
+        EnglishLanguageConsoleDisplay englishLanguageConsoleDisplay = new EnglishLanguageConsoleDisplay();
+        englishLanguageConsoleDisplay.displayProductNotFoundMessage("987123");
+        englishLanguageConsoleDisplay.displayEmptyBarcodeMessage();
+        englishLanguageConsoleDisplay.displayProductNotFoundMessage("1234");
+        englishLanguageConsoleDisplay.displayEmptyBarcodeMessage();
 
         assertEquals(Arrays.asList(
                 "Product not found for 987123",
