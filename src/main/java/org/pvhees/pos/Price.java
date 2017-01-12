@@ -19,4 +19,18 @@ public class Price {
     public double dollarValue() {
         return centsValue/100.0d;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Price)) return false;
+
+        Price other = (Price) o;
+
+        return centsValue == other.centsValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return centsValue;
+    }
 }
