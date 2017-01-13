@@ -11,6 +11,6 @@ public class InMemoryCatalog implements Catalog {
 
     @Override
     public Price findPrice(String barcode) {
-        return pricesByBarcode.get(barcode);
+        return this.pricesByBarcode.get(barcode);
     }
 }

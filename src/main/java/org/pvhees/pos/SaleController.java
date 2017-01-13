@@ -1,6 +1,8 @@
 package org.pvhees.pos;
 
-public class SaleController {
+import org.pvhees.pos.ui.BarcodeScannedListener;
+
+public class SaleController implements BarcodeScannedListener {
     private Catalog catalog;
     private Display display;
 

@@ -1,21 +1,17 @@
 package org.pvhees.pos;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.pvhees.pos.EnglishLanguageConsoleDisplay;
-import org.pvhees.pos.Price;
-import org.pvhees.pos.TextUtilities;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(Parameterized.class)
 public class DisplayPricesToConsoleTest {
@@ -41,6 +37,7 @@ public class DisplayPricesToConsoleTest {
 
     @Parameterized.Parameters(name=" Monetary amount {0} displays as {1}")
     public static Collection<Object[]> data() {
+        //REFACTOR use Price instead of cents-as-int
         return Arrays.asList(new Object[][]{
                 {789, "$7,89"},
                 {520, "$5,20"},
@@ -55,12 +52,10 @@ public class DisplayPricesToConsoleTest {
 
     @Test
     public void test() throws Exception {
-        ByteArrayOutputStream canvas = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(canvas));
+        PostOffice postOffice = mock(PostOffice.class);
 
-        new EnglishLanguageConsoleDisplay().displayPrice(Price.cents(priceInCents));
+        new EnglishLanguageDisplay(postOffice).displayPrice(Price.cents(priceInCents));
 
-        Assert.assertEquals(Arrays.asList(expectedFormattedPrice), TextUtilities.lines(canvas.toString("UTF-8")));
+        verify(postOffice).sendMessage(expectedFormattedPrice);
     }
-
 }

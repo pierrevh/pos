@@ -1,21 +1,20 @@
 package org.pvhees.pos;
 
 import org.junit.Test;
-import org.pvhees.pos.Catalog;
-import org.pvhees.pos.Price;
 
 import static org.junit.Assert.assertEquals;
 
 public abstract class FindPriceInCatalogContract {
-
     @Test
-    public void productFound() {
-        Catalog catalog = catalogWith("::barcode::", Price.cents(123));
-        assertEquals(Price.cents(123), catalog.findPrice("::barcode::"));
+    public void productFound() throws Exception {
+        Price foundPrice = Price.cents(1250);
+
+        Catalog catalog = catalogWith("::barcode::", foundPrice);
+        assertEquals(foundPrice, catalog.findPrice("::barcode::"));
     }
 
     @Test
-    public void productNotFound() {
+    public void productNotFound() throws Exception {
         Catalog catalog = catalogWithout("::barcode::");
         assertEquals(null, catalog.findPrice("::barcode::"));
     }
